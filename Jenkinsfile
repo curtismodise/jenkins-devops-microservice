@@ -37,6 +37,12 @@ pipeline {
                 sh "mvn failsafe:integration-test failsafe:verify"
             }
         }
+        stage ('Package') {
+            steps {
+                sh "mvn package -DskipTests"
+            }
+        }
+    
         stage ('Build Docker Image') {
             steps {
                 //docker build -t curtissananapo/currency-exchange-devops:$env.BUILD_TAG
